@@ -8,7 +8,7 @@ function TaxaUnitaria() {
     periodo: 0,
     juros: 0,
   })
-  const { capital, taxa, periodo, juros } = valores
+  const { capital, periodo, juros } = valores
 
   const onMutate = (e) => {
     setValores((prevState) => ({
@@ -19,7 +19,8 @@ function TaxaUnitaria() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log(valores)
+    let taxa = juros / ((capital * periodo) / 100)
+    window.confirm('Taxa: ' + taxa + '%')
   }
 
   return (

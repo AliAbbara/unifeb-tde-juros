@@ -19,7 +19,7 @@ function Periodo() {
   const onSubmit = (e) => {
     e.preventDefault()
     let periodo = juros / ((capital * taxa) / 100)
-    window.confirm('Periodo: ' + periodo)
+    window.confirm('Periodo: ' + periodo + ' meses')
   }
 
   return (

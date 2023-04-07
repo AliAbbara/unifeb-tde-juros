@@ -8,7 +8,7 @@ function CapitalInicial() {
     periodo: 0,
     juros: 0,
   })
-  const { capital, taxa, periodo, juros } = valores
+  const { taxa, periodo, juros } = valores
 
   const onMutate = (e) => {
     setValores((prevState) => ({
@@ -19,7 +19,8 @@ function CapitalInicial() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log(valores)
+    let capital = juros / ((taxa * periodo) / 100)
+    window.confirm('Capital: ' + capital)
   }
 
   return (
