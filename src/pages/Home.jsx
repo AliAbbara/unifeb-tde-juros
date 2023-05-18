@@ -4,14 +4,14 @@ function Home() {
   return (
     <div className='flex flex-col justify-between w-fit m-auto'>
       <Link
-        to='/juros-simples'
+        to='/juros-compostos'
         className='bg-blue-700 hover:bg-blue-600 rounded-3xl px-6 py-2 text-center text-white my-3'>
-        Juros Simples
+        Juros Compostos
       </Link>
       <Link
-        to='/capital-inicial'
+        to='/capital-principal'
         className='bg-blue-700 hover:bg-blue-600 rounded-3xl px-6 py-2 text-center text-white my-3'>
-        Capital Inicial
+        Capital Principal
       </Link>
       <Link
         to='/taxa-unitaria'
@@ -22,6 +22,16 @@ function Home() {
         to='/periodo'
         className='bg-blue-700 hover:bg-blue-600 rounded-3xl px-6 py-2 text-center text-white my-3'>
         Periodo
+      </Link>
+      <Link
+        to='/conversao'
+        className='bg-blue-700 hover:bg-blue-600 rounded-3xl px-6 py-2 text-center text-white my-3'>
+        Conversao de Taxa
+      </Link>
+      <Link
+        to='/taxa-efetiva'
+        className='bg-blue-700 hover:bg-blue-600 rounded-3xl px-6 py-2 text-center text-white my-3'>
+        Taxa Efetiva
       </Link>
     </div>
   )

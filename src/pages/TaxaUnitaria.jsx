@@ -4,11 +4,10 @@ import { useState } from 'react'
 function TaxaUnitaria() {
   const [valores, setValores] = useState({
     capital: 0,
-    taxa: 0,
     periodo: 0,
-    juros: 0,
+    montante: 0,
   })
-  const { capital, periodo, juros } = valores
+  const { capital, periodo, montante } = valores
 
   const onMutate = (e) => {
     setValores((prevState) => ({
@@ -19,7 +18,9 @@ function TaxaUnitaria() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    let taxa = juros / ((capital * periodo) / 100)
+    let inside = montante / capital
+    let taxa1 = Math.pow(inside, 1 / periodo) - 1
+    let taxa = taxa1 * 100
     window.confirm('Taxa: ' + taxa + '%')
   }
 
@@ -30,9 +31,7 @@ function TaxaUnitaria() {
         className='bg-blue-700 rounded-3xl p-2 text-white hover:bg-blue-600 w-fit'>
         Voltar ao Inicio
       </Link>
-      <p className='text-3xl'>
-        Calculadora de Taxa Unitaria na aplicaçao de Juros Simples
-      </p>
+      <p className='text-3xl'>Calculadora de Taxa Unitaria</p>
       <div>
         <form
           onSubmit={onSubmit}
@@ -45,12 +44,12 @@ function TaxaUnitaria() {
             value={capital}
             onChange={onMutate}
           />
-          <label>Informe o Juros por mes: </label>
+          <label>Informe o Montante: </label>
           <input
             className='rounded-3xl bg-slate-200 p-1 px-2'
             type='number'
-            id='juros'
-            value={juros}
+            id='montante'
+            value={montante}
             onChange={onMutate}
           />
           <label>Informe o Periodo em meses: </label>

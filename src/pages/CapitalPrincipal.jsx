@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
-function Periodo() {
+function CapitalPrincipal() {
   const [valores, setValores] = useState({
-    capital: 0,
     taxa: 0,
+    periodo: 0,
     montante: 0,
   })
-  const { capital, taxa, montante } = valores
+  const { taxa, periodo, montante } = valores
 
   const onMutate = (e) => {
     setValores((prevState) => ({
@@ -18,8 +18,10 @@ function Periodo() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    let periodo = Math.log(montante / capital) / Math.log(1 + taxa / 100)
-    window.confirm('Periodo: ' + periodo + ' meses')
+    let taxa1 = taxa / 100
+    let bottom = (1 + taxa1) ** periodo
+    let capital = montante / bottom
+    window.confirm('Capital: ' + capital)
   }
 
   return (
@@ -29,17 +31,17 @@ function Periodo() {
         className='bg-blue-700 rounded-3xl p-2 text-white hover:bg-blue-600 w-fit'>
         Voltar ao Inicio
       </Link>
-      <p className='text-3xl'>Calculadora de Periodo</p>
+      <p className='text-3xl'>Calculadora de Capital Principal</p>
       <div>
         <form
           onSubmit={onSubmit}
           className='flex flex-col text-center w-fit m-auto'>
-          <label>Informe o Capital: </label>
+          <label>Informe o Montante: </label>
           <input
             className='rounded-3xl bg-slate-200 p-1 px-2'
             type='number'
-            id='capital'
-            value={capital}
+            id='montante'
+            value={montante}
             onChange={onMutate}
           />
           <label>Informe a Taxa Unitaria por mes: </label>
@@ -50,12 +52,12 @@ function Periodo() {
             value={taxa}
             onChange={onMutate}
           />
-          <label>Informe o Montante: </label>
+          <label>Informe o Periodo em meses: </label>
           <input
             className='rounded-3xl bg-slate-200 p-1 px-2'
             type='number'
-            id='montante'
-            value={montante}
+            id='periodo'
+            value={periodo}
             onChange={onMutate}
           />
           <button
@@ -69,4 +71,4 @@ function Periodo() {
   )
 }
 
-export default Periodo
+export default CapitalPrincipal

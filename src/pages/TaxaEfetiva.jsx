@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
-function Periodo() {
+function TaxaEfetiva() {
   const [valores, setValores] = useState({
-    capital: 0,
     taxa: 0,
-    montante: 0,
+    periodo: 0,
   })
-  const { capital, taxa, montante } = valores
+  const { taxa, periodo } = valores
 
   const onMutate = (e) => {
     setValores((prevState) => ({
@@ -18,8 +17,11 @@ function Periodo() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    let periodo = Math.log(montante / capital) / Math.log(1 + taxa / 100)
-    window.confirm('Periodo: ' + periodo + ' meses')
+    let conversao = taxa / periodo
+    conversao = conversao / 100
+    let efetiva = (1 + conversao) ** periodo
+    efetiva = efetiva - 1
+    window.confirm('Periodo: ' + efetiva + ' => ' + efetiva * 100 + '%')
   }
 
   return (
@@ -29,19 +31,19 @@ function Periodo() {
         className='bg-blue-700 rounded-3xl p-2 text-white hover:bg-blue-600 w-fit'>
         Voltar ao Inicio
       </Link>
-      <p className='text-3xl'>Calculadora de Periodo</p>
+      <p className='text-3xl'>Calculadora de Taxa Efetiva</p>
       <div>
         <form
           onSubmit={onSubmit}
           className='flex flex-col text-center w-fit m-auto'>
-          <label>Informe o Capital: </label>
-          <input
-            className='rounded-3xl bg-slate-200 p-1 px-2'
-            type='number'
-            id='capital'
-            value={capital}
-            onChange={onMutate}
-          />
+          <p>
+            Por favor, informe o Periodo em baixo baseado nas calculaçoes
+            seguindo:{' '}
+          </p>
+          <p>Capitalização mensal? Periodo=12 </p>
+          <p>Capitalização bimestral? Periodo=6 </p>
+          <p>Capitalização trimestal? Periodo=4 </p>
+          <p>Capitalização semestral? Periodo=2 </p>
           <label>Informe a Taxa Unitaria por mes: </label>
           <input
             className='rounded-3xl bg-slate-200 p-1 px-2'
@@ -50,12 +52,12 @@ function Periodo() {
             value={taxa}
             onChange={onMutate}
           />
-          <label>Informe o Montante: </label>
+          <label>Informe o Periodo: </label>
           <input
             className='rounded-3xl bg-slate-200 p-1 px-2'
             type='number'
-            id='montante'
-            value={montante}
+            id='periodo'
+            value={periodo}
             onChange={onMutate}
           />
           <button
@@ -69,4 +71,4 @@ function Periodo() {
   )
 }
 
-export default Periodo
+export default TaxaEfetiva

@@ -1,14 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
-function CapitalInicial() {
+function Conversao() {
   const [valores, setValores] = useState({
-    capital: 0,
     taxa: 0,
     periodo: 0,
-    juros: 0,
   })
-  const { taxa, periodo, juros } = valores
+  const { taxa, periodo } = valores
 
   const onMutate = (e) => {
     setValores((prevState) => ({
@@ -19,8 +17,8 @@ function CapitalInicial() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    let capital = juros / ((taxa * periodo) / 100)
-    window.confirm('Capital: ' + capital)
+    let conversao = taxa / periodo
+    window.confirm('Periodo: ' + conversao)
   }
 
   return (
@@ -30,22 +28,20 @@ function CapitalInicial() {
         className='bg-blue-700 rounded-3xl p-2 text-white hover:bg-blue-600 w-fit'>
         Voltar ao Inicio
       </Link>
-      <p className='text-3xl'>
-        Calculadora de Capital Inicial na aplicaçao de Juros Simples
-      </p>
+      <p className='text-3xl'>Calculadora de Conversao da Taxa Capitalizada</p>
       <div>
         <form
           onSubmit={onSubmit}
           className='flex flex-col text-center w-fit m-auto'>
-          <label>Informe o Juros por mes: </label>
-          <input
-            className='rounded-3xl bg-slate-200 p-1 px-2'
-            type='number'
-            id='juros'
-            value={juros}
-            onChange={onMutate}
-          />
-          <label>Informe a Taxa Unitaria por mes: </label>
+          <p>
+            Por favor, informe o Periodo em baixo baseado nas calculaçoes
+            seguindo:{' '}
+          </p>
+          <p>Capitalização mensal? Periodo=12 </p>
+          <p>Capitalização bimestral? Periodo=6 </p>
+          <p>Capitalização trimestal? Periodo=4 </p>
+          <p>Capitalização semestral? Periodo=2 </p>
+          <label>Informe a Taxa ao Ano: </label>
           <input
             className='rounded-3xl bg-slate-200 p-1 px-2'
             type='number'
@@ -53,7 +49,7 @@ function CapitalInicial() {
             value={taxa}
             onChange={onMutate}
           />
-          <label>Informe o Periodo em meses: </label>
+          <label>Informe o Periodo: </label>
           <input
             className='rounded-3xl bg-slate-200 p-1 px-2'
             type='number'
@@ -72,4 +68,4 @@ function CapitalInicial() {
   )
 }
 
-export default CapitalInicial
+export default Conversao

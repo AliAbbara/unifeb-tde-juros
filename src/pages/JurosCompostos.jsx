@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
-function JurosSimples() {
+function JurosCompostos() {
   const [valores, setValores] = useState({
     capital: 0,
     taxa: 0,
@@ -18,7 +18,9 @@ function JurosSimples() {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    let juros = (capital * taxa * periodo) / 100
+    let taxa1 = taxa / 100
+    let montante = capital * (1 + taxa1) ** periodo
+    let juros = montante - capital
     window.confirm('Juros: ' + juros)
   }
 
@@ -29,9 +31,7 @@ function JurosSimples() {
         className='bg-blue-700 rounded-3xl p-2 text-white hover:bg-blue-600 w-fit'>
         Voltar ao Inicio
       </Link>
-      <p className='text-3xl'>
-        Calculadora de Juros na aplicaçao de Juros Simples
-      </p>
+      <p className='text-3xl'>Calculadora de Juros Compostos</p>
       <div>
         <form
           onSubmit={onSubmit}
@@ -71,4 +71,4 @@ function JurosSimples() {
   )
 }
 
-export default JurosSimples
+export default JurosCompostos
