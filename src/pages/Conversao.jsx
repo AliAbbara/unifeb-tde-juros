@@ -18,7 +18,7 @@ function Conversao() {
   const onSubmit = (e) => {
     e.preventDefault()
     let conversao = taxa / periodo
-    window.confirm('Periodo: ' + conversao)
+    window.confirm('Periodo: ' + conversao + '%')
   }
 
   return (
