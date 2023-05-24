@@ -21,7 +21,7 @@ function TaxaEfetiva() {
     conversao = conversao / 100
     let efetiva = (1 + conversao) ** periodo
     efetiva = efetiva - 1
-    window.confirm('Periodo: ' + efetiva + ' => ' + efetiva * 100 + '%')
+    window.confirm(efetiva * 100 + '%')
   }
 
   return (
