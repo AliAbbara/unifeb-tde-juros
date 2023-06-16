@@ -51,7 +51,7 @@ function DescontoRacSimples() {
             value={taxa}
             onChange={onMutate}
           />
-          <label>Informe o Periodo de Antecipaçao (em Meses): </label>
+          <label>Informe o Periodo de Antecipaçao (em Dias): </label>
           <input
             className='rounded-3xl bg-slate-200 p-1 px-2'
             type='number'
